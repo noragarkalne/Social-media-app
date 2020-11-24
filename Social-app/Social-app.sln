@@ -5,6 +5,12 @@ VisualStudioVersion = 16.0.30517.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Social-app", "Social-app.csproj", "{0B4860D4-84ED-41FC-BC39-F6671C8FB5FF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialApp.Core", "..\SocialApp.Core\SocialApp.Core.csproj", "{5ECBDE3C-546F-4C1C-B514-450833B5EE66}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialApp.Data", "..\SocialApp.Data\SocialApp.Data.csproj", "{AA155523-FCE6-4C2A-84A9-A2E653FCE647}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialApp.Service", "..\SocialApp.Service\SocialApp.Service.csproj", "{1A2651CA-621F-40C9-8D5F-41796CEFE1D7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +21,18 @@ Global
 		{0B4860D4-84ED-41FC-BC39-F6671C8FB5FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B4860D4-84ED-41FC-BC39-F6671C8FB5FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B4860D4-84ED-41FC-BC39-F6671C8FB5FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5ECBDE3C-546F-4C1C-B514-450833B5EE66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5ECBDE3C-546F-4C1C-B514-450833B5EE66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5ECBDE3C-546F-4C1C-B514-450833B5EE66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5ECBDE3C-546F-4C1C-B514-450833B5EE66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA155523-FCE6-4C2A-84A9-A2E653FCE647}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA155523-FCE6-4C2A-84A9-A2E653FCE647}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA155523-FCE6-4C2A-84A9-A2E653FCE647}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA155523-FCE6-4C2A-84A9-A2E653FCE647}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A2651CA-621F-40C9-8D5F-41796CEFE1D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A2651CA-621F-40C9-8D5F-41796CEFE1D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A2651CA-621F-40C9-8D5F-41796CEFE1D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A2651CA-621F-40C9-8D5F-41796CEFE1D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
