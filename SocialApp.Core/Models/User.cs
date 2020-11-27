@@ -10,7 +10,7 @@ namespace SocialApp.Core.Models
     {
         public string Name { get; set; }
         public string Surname { get; set; } = null;
-        public DateTime BirthDate { get; set; } 
+        public string BirthDate { get; set; } 
         public string Email { get; set; }
         public string Password { get; set; }
         public string Interests { get; set; }
