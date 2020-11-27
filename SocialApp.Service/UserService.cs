@@ -35,10 +35,10 @@ namespace SocialApp.Service
             return Create(user);
         }
 
-        public async Task<ServiceResult> GetUser(string email)
+        public async Task<ServiceResult> GetUser(string email, string password)
         {
             var users = await _ctx.Users.ToListAsync();
-            var user = users.SingleOrDefault(u => u.Email == email);
+            var user = users.SingleOrDefault(u => u.Email == email && u.Password ==password);
 
             if (user == null)
             {

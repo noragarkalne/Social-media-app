@@ -11,7 +11,7 @@ namespace SocialApp.Core.Services
     {
         Task<IEnumerable<Post>> GetPosts();
         Task<ServiceResult> AddNewUser(User user);
-        Task<ServiceResult> GetUser(string email);
+        Task<ServiceResult> GetUser(string email, string password);
         void ClearAllUsers();
         Task<ServiceResult> RemoveUser(int userId);
     }

@@ -24,10 +24,10 @@ namespace Social_app.Controllers
         }
 
         [HttpGet]
-        public async Task<IHttpActionResult> Login(string email)
+        public async Task<IHttpActionResult> Login(string email, string password)
         {
-            var user = await _userService.GetUser(email);
-            if (user.Succeeded == true)
+            var user = await _userService.GetUser(email, password);
+            if (user.Succeeded)
             {
                 return Ok("viss notiek");
             }
