@@ -13,7 +13,7 @@ namespace SocialApp.Core.Models
         public int Id { get; }
         public IEntity Entity { get; private set; }
 
-        public IEnumerable<string> Errors = new List<string>();   //implements any type of collection
+        public string Error {get; set;}  //implements any type of collection
 
         public ServiceResult(bool succeeded)
         {
@@ -26,9 +26,9 @@ namespace SocialApp.Core.Models
             Id = id;
             Succeeded = succeeded;
         }
-        public ServiceResult Set(IEnumerable<string> errors)
+        public ServiceResult Set(string error)
         {
-            Errors = errors;
+            Error = error;
             return this;
         }
 

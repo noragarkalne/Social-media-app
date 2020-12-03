@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using AutoMapper;
 using Social_app.Models;
 using SocialApp.Core.Models;
@@ -12,6 +13,8 @@ using SocialApp.Core.Services;
 
 namespace Social_app.Controllers
 {
+    [EnableCors("*", "*", "*")]
+    [Route("api/put/register")]
     public class RegisterController : BasicApiController
     {
         public RegisterController(IUserService userService, IMapper mapper)
@@ -20,7 +23,7 @@ namespace Social_app.Controllers
         }
 
 
-        [HttpPut, Route("api/put/register")]
+        [HttpPut]
         public async Task<IHttpActionResult> Add(User user)
         {
 

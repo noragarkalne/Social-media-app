@@ -38,14 +38,25 @@ namespace SocialApp.Service
         public async Task<ServiceResult> GetUser(string email, string password)
         {
             var users = await _ctx.Users.ToListAsync();
-            var user = users.SingleOrDefault(u => u.Email == email && u.Password ==password);
+            var user = users.SingleOrDefault(u => u.Email == email && u.Password == password);
+
+            if (!email.Contains("@"))
+            {
+                return new ServiceResult(false).Set($"E-mail address should include '@'!");
+            }
+
+            if (email == "" || password == "")
+            {
+                return new ServiceResult(false).Set($"Please fill in both fields!");
+            }
 
             if (user == null)
             {
-                return new ServiceResult(false);
+                return new ServiceResult(false).Set($"Invalid username or password!");
             }
 
-            return new ServiceResult(true).Set(user);
+            var x = new ServiceResult(true).Set(user);
+            return x;
         }
 
         public void ClearAllUsers()

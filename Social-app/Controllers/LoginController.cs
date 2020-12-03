@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Results;
 using AutoMapper;
 using Social_app.Attributes;
@@ -12,10 +13,11 @@ using SocialApp.Core.Models;
 using SocialApp.Core.Services;
 
 
+
 namespace Social_app.Controllers
 {
-    [BasicAuthentification]
-    [Route("login")]
+    //[BasicAuthentification]
+    [EnableCors("*", "*", "*")]
 
     public class LoginController : BasicApiController
     {
@@ -23,18 +25,18 @@ namespace Social_app.Controllers
         {
         }
 
-        [HttpGet]
-        public async Task<IHttpActionResult> Login(string email, string password)
+        [HttpPost, Route("api/post/login")]
+        public async Task<IHttpActionResult> Login(User user)
         {
-            var user = await _userService.GetUser(email, password);
-            if (user.Succeeded)
+            var task = await _userService.GetUser(user.Email, user.Password);
+            if (task.Succeeded)
             {
-                return Ok("viss notiek");
+                return Ok(task.Entity);
             }
 
-            if (user.Succeeded == false)
+            if (task.Succeeded == false)
             {
-                return BadRequest("viss slikti");
+                return BadRequest(task.Error);
             }
 
             return NotFound();
