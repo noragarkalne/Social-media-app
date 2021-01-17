@@ -14,7 +14,7 @@ using SocialApp.Core.Services;
 namespace Social_app.Controllers
 {
     [EnableCors("*", "*", "*")]
-    [Route("api/put/register")]
+    [Route("api/post/register")]
     public class RegisterController : BasicApiController
     {
         public RegisterController(IUserService userService, IMapper mapper)
@@ -23,7 +23,7 @@ namespace Social_app.Controllers
         }
 
 
-        [HttpPut]
+        [HttpPost]
         public async Task<IHttpActionResult> Add(User user)
         {
 
@@ -31,7 +31,7 @@ namespace Social_app.Controllers
 
             if (task.Succeeded == false)
             {
-                return Conflict();
+                return BadRequest(task.Error);
             }
 
             user.Id = task.Entity.Id;

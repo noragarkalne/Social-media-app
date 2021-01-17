@@ -29,10 +29,31 @@ namespace SocialApp.Service
 
             if (users.Any(u => u.Email.Equals(user.Email)))
             {
-                return new ServiceResult(false);
+                return new ServiceResult(false).Set($"User with this e-mail already exist!");
+            }
+            if (!user.Email.Contains("@"))
+            {
+                return new ServiceResult(false).Set($"E-mail should contain @ symbol!");
+            }
+
+            var date = DateTime.Parse(user.BirthDate);
+            var age = GetAge(date);
+            if (age < 13)
+            {
+                return new ServiceResult(false).Set($"To register on this site, you should be at least 13 years old, so go to your parents and ask for permision!!!");
             }
 
             return Create(user);
+        }
+
+        public int GetAge(DateTime date)
+        {
+            DateTime today = DateTime.Today;
+            int age = today.Year - date.Year;
+            if (date > today.AddYears(-age))
+                age--;
+
+            return age;
         }
 
         public async Task<ServiceResult> GetUser(string email, string password)
