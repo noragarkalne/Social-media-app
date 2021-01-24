@@ -19,6 +19,11 @@ namespace SocialApp.Service
             _ctx = context;
         }
 
+        public DbService()
+        {
+
+        }
+
         public IQueryable<T> Query<T>() where T : Entity
         {
             return _ctx.Set<T>().AsQueryable();

@@ -18,6 +18,12 @@ namespace SocialApp.Service
 
         }
 
+        public UserService()
+        {
+
+        }
+
+
         public Task<IEnumerable<Post>> GetPosts()
         {
             throw new NotImplementedException();
@@ -85,9 +91,12 @@ namespace SocialApp.Service
             throw new NotImplementedException();
         }
 
-        public Task<ServiceResult> RemoveUser(int userId)
+        public async Task<ServiceResult> RemoveUser(int userId)
         {
-            throw new NotImplementedException();
+            var users = await _ctx.Users.ToListAsync();
+            var user = users.SingleOrDefault(u => u.Id == userId);
+
+            return Delete(user);
         }
     }
 }
