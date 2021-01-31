@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using SocialApp.Core.Models;
 using SocialApp.Core.Services;
 using SocialApp.Data;
+using SocialApp.Service.Exceptions;
 
 namespace SocialApp.Service
 {
@@ -31,6 +31,11 @@ namespace SocialApp.Service
 
         public async Task<ServiceResult> AddNewUser(User user)
         {
+            if (string.IsNullOrEmpty(user.Name))
+            {
+                throw new EmptyNameException();
+            }
+
             var users = await _ctx.Users.ToListAsync();
 
             if (users.Any(u => u.Email.Equals(user.Email)))

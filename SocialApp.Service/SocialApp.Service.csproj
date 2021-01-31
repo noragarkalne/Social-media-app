@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="DbService.cs" />
     <Compile Include="EntityService.cs" />
+    <Compile Include="Exceptions\EmptyNameException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserService.cs" />
   </ItemGroup>
@@ -70,6 +71,7 @@
       <Name>SocialApp.Data</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

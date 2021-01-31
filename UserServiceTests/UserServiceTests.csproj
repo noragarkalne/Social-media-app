@@ -56,6 +56,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Social-app\Social-app.csproj">
+      <Project>{0b4860d4-84ed-41fc-bc39-f6671c8fb5ff}</Project>
+      <Name>Social-app</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SocialApp.Core\SocialApp.Core.csproj">
       <Project>{5ecbde3c-546f-4c1c-b514-450833b5ee66}</Project>
       <Name>SocialApp.Core</Name>
