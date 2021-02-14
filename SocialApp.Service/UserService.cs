@@ -36,6 +36,16 @@ namespace SocialApp.Service
                 throw new EmptyNameException();
             }
 
+            if (string.IsNullOrEmpty(user.Surname))
+            {
+                throw new EmptySurNameException();
+            }
+
+            if (string.IsNullOrEmpty(user.Email))
+            {
+                throw new EmptyEmailException();
+            }
+
             var users = await _ctx.Users.ToListAsync();
 
             if (users.Any(u => u.Email.Equals(user.Email)))
@@ -51,9 +61,14 @@ namespace SocialApp.Service
             var age = GetAge(date);
             if (age < 13)
             {
-                return new ServiceResult(false).Set($"To register on this site, you should be at least 13 years old, so go to your parents and ask for permision!!!");
+                throw new UnderAgeException();
+                //return new ServiceResult(false).Set($"To register on this site, you should be at least 13 years old, so go to your parents and ask for permision!!!");
             }
-
+            if (age == -1)
+            {
+                throw new FutureDateBirthdayException();
+                //return new ServiceResult(false).Set($"To register on this site, you should be at least 13 years old, so go to your parents and ask for permision!!!");
+            }
             return Create(user);
         }
 
@@ -62,8 +77,13 @@ namespace SocialApp.Service
             DateTime today = DateTime.Today;
             int age = today.Year - date.Year;
             if (date > today.AddYears(-age))
+            {
                 age--;
-
+            }
+            if (date < today.AddYears(-age))
+            {
+                age = -1; 
+            }
             return age;
         }
 

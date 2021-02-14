@@ -33,6 +33,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup />
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\Social-app\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
@@ -53,7 +55,11 @@
   <ItemGroup>
     <Compile Include="DbService.cs" />
     <Compile Include="EntityService.cs" />
+    <Compile Include="Exceptions\EmptyEmailException.cs" />
     <Compile Include="Exceptions\EmptyNameException.cs" />
+    <Compile Include="Exceptions\EmptySurNameException.cs" />
+    <Compile Include="Exceptions\FutureDateBirthdayException.cs" />
+    <Compile Include="Exceptions\UnderAgeException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserService.cs" />
   </ItemGroup>

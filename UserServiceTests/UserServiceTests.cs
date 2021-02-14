@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SocialApp.Core.Models;
 using SocialApp.Core.Services;
 using SocialApp.Service;
@@ -45,11 +46,122 @@ namespace UserServiceTests
                 Online = false
             };
 
-            Assert.ThrowsException<EmptyNameException>(() => 
+            Assert.ThrowsExceptionAsync<EmptyNameException>(() => 
                 _userService.AddNewUser(user));
            
         }
 
+        [TestMethod]
+        public void AddNewUserWithoutSurNameTest()
+        {
+            var user = new User
+            {
+                Name = "Nora",
+                Surname = "",
+                BirthDate = "2001-12-12",
+                Email = "nora@de.lv",
+                Password = "123",
+                FriendRequest = false,
+                Id = 12,
+                Post = null,
+                Image = null,
+                Interests = "",
+                Online = false
+            };
+
+            Assert.ThrowsExceptionAsync<EmptySurNameException>(() =>
+                _userService.AddNewUser(user));
+
+        }
+
+        [TestMethod]
+        public void CheckNewUserIsUnderAge()
+        {
+            var user = new User
+            {
+                Name = "Nora",
+                Surname = "Kalva",
+                BirthDate = "2009-12-12",
+                Email = "nora@de.lv",
+                Password = "123",
+                FriendRequest = false,
+                Id = 12,
+                Post = null,
+                Image = null,
+                Interests = "",
+                Online = false
+            };
+            var date = DateTime.Parse(user.BirthDate);
+            var age = GetAge(date);
+            if (age < 13)
+            {
+                Assert.ThrowsExceptionAsync<UnderAgeException>(() =>
+                    _userService.AddNewUser(user));
+            }
+        }
+        [TestMethod]
+        public void CheckNewUserBirthdayIsNotInFuture()
+        {
+            var user = new User
+            {
+                Name = "Nora",
+                Surname = "Kalva",
+                BirthDate = "2029-12-12",
+                Email = "nora@de.lv",
+                Password = "123",
+                FriendRequest = false,
+                Id = 12,
+                Post = null,
+                Image = null,
+                Interests = "",
+                Online = false
+            };
+            var date = DateTime.Parse(user.BirthDate);
+            var age = GetAge(date);
+            if (age == -1)
+            {
+                Assert.ThrowsExceptionAsync<FutureDateBirthdayException> (() =>
+                    _userService.AddNewUser(user));
+            }
+        }
+        public int GetAge(DateTime date)
+        {
+            DateTime today = DateTime.Today;
+            int age = today.Year - date.Year;
+            if (date > today.AddYears(-age))
+            {
+                age--;
+            }
+            if (date < today.AddYears(-age))
+            {
+                age = -1;
+            }
+
+            return age;
+        }
+
+        [TestMethod]
+        public void CheckEmailIsNotNullOrEmptyTest()
+        {
+            var user = new User
+            {
+                Name = "Nora",
+                Surname = "Kalva",
+                BirthDate = "2001-12-12",
+                Email = "",
+                Password = "123",
+                FriendRequest = false,
+                Id = 12,
+                Post = null,
+                Image = null,
+                Interests = "",
+                Online = false
+            };
+
+            Assert.ThrowsExceptionAsync<EmptyEmailException>(() =>
+                _userService.AddNewUser(user));
+
+        }
 
 
 
