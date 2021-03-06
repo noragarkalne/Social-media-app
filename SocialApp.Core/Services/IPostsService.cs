@@ -1,0 +1,15 @@
+﻿using SocialApp.Core.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace SocialApp.Core.Services
+{
+    public interface IPostsService
+    {
+        IEnumerable<Post> GetPosts(int userId);
+        ServiceResult AddPost(Post post);
+    }
+}

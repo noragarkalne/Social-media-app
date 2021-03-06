@@ -13,6 +13,7 @@ namespace SocialApp.Core.Services
         IQueryable<T> QueryById<T>(int id) where T : Entity;
         IEnumerable<T> Get<T>() where T : Entity;
         Task<T> GetById<T>(int id) where T : Entity;
+        IEnumerable<T> GetAllById<T>(int id) where T : Entity;
         ServiceResult Create<T>(T entity) where T : Entity;
         ServiceResult Delete<T>(T entity) where T : Entity;
         ServiceResult Update<T>(T entity) where T : Entity;

@@ -9,7 +9,6 @@ namespace SocialApp.Core.Services
 {
     public interface IUserService
     {
-        Task<IEnumerable<Post>> GetPosts();
         Task<ServiceResult> AddNewUser(User user);
         Task<ServiceResult> GetUser(string email, string password);
         void ClearAllUsers();

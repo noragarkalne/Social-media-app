@@ -23,11 +23,10 @@ namespace SocialApp.Service
 
         }
 
-
-        public Task<IEnumerable<Post>> GetPosts()
-        {
-            throw new NotImplementedException();
-        }
+        //public Task<IEnumerable<Post>> GetPosts()
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         public async Task<ServiceResult> AddNewUser(User user)
         {
@@ -46,6 +45,15 @@ namespace SocialApp.Service
                 throw new EmptyEmailException();
             }
 
+            if (string.IsNullOrEmpty(user.BirthDate))
+            {
+                throw new EmptyBirthdayDateException();
+            }
+
+            if (string.IsNullOrEmpty(user.Password))
+            {
+                throw new EmptyPasswordException();
+            }
             var users = await _ctx.Users.ToListAsync();
 
             if (users.Any(u => u.Email.Equals(user.Email)))
@@ -97,9 +105,14 @@ namespace SocialApp.Service
                 return new ServiceResult(false).Set($"E-mail address should include '@'!");
             }
 
-            if (email == "" || password == "")
+            if (email == "")
             {
-                return new ServiceResult(false).Set($"Please fill in both fields!");
+                throw new EmptyEmailException();
+            }
+
+            if (password == "")
+            {
+                throw new EmptyPasswordException();
             }
 
             if (user == null)
@@ -107,8 +120,8 @@ namespace SocialApp.Service
                 return new ServiceResult(false).Set($"Invalid username or password!");
             }
 
-            var x = new ServiceResult(true).Set(user);
-            return x;
+            var task = new ServiceResult(true).Set(user);
+            return task;
         }
 
         public void ClearAllUsers()

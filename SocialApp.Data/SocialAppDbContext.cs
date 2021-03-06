@@ -1,6 +1,6 @@
 ﻿using System.Data.Entity;
 using SocialApp.Core.Models;
-
+using SocialApp.Data.Migrations;
 
 namespace SocialApp.Data
 {
@@ -10,8 +10,8 @@ namespace SocialApp.Data
         {
             Database.SetInitializer<SocialAppDbContext>(null);
 
-            //Database.SetInitializer<SocialAppDbContext>(
-            //    new MigrateDatabaseToLatestVersion<SocialAppDbContext, Configuration>()); // if new migration will happen ... everything will happen automatically, user even do not notice it; golden line
+            Database.SetInitializer<SocialAppDbContext>(
+                new MigrateDatabaseToLatestVersion<SocialAppDbContext, Configuration>()); // if new migration will happen ... everything will happen automatically, user even do not notice it; golden line
         }
 
         public DbSet<User> Users { get; set; }

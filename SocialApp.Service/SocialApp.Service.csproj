@@ -55,11 +55,14 @@
   <ItemGroup>
     <Compile Include="DbService.cs" />
     <Compile Include="EntityService.cs" />
+    <Compile Include="Exceptions\EmptyBirthdayDateException.cs" />
     <Compile Include="Exceptions\EmptyEmailException.cs" />
     <Compile Include="Exceptions\EmptyNameException.cs" />
+    <Compile Include="Exceptions\EmptyPasswordException.cs" />
     <Compile Include="Exceptions\EmptySurNameException.cs" />
     <Compile Include="Exceptions\FutureDateBirthdayException.cs" />
     <Compile Include="Exceptions\UnderAgeException.cs" />
+    <Compile Include="PostsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserService.cs" />
   </ItemGroup>

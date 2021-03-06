@@ -75,6 +75,28 @@ namespace UserServiceTests
         }
 
         [TestMethod]
+        public void AddNewUserWithoutBirthdayTest()
+        {
+            var user = new User
+            {
+                Name = "Nora",
+                Surname = "Kalva",
+                BirthDate = "",
+                Email = "nora@de.lv",
+                Password = "123",
+                FriendRequest = false,
+                Id = 12,
+                Post = null,
+                Image = null,
+                Interests = "",
+                Online = false
+            };
+
+            Assert.ThrowsExceptionAsync<EmptyBirthdayDateException>(() =>
+                _userService.AddNewUser(user));
+
+        }
+        [TestMethod]
         public void CheckNewUserIsUnderAge()
         {
             var user = new User
@@ -99,6 +121,7 @@ namespace UserServiceTests
                     _userService.AddNewUser(user));
             }
         }
+
         [TestMethod]
         public void CheckNewUserBirthdayIsNotInFuture()
         {
@@ -160,6 +183,57 @@ namespace UserServiceTests
 
             Assert.ThrowsExceptionAsync<EmptyEmailException>(() =>
                 _userService.AddNewUser(user));
+
+        }
+
+        [TestMethod]
+        public void RegisterWithoutPassword()
+        {
+            var user = new User
+            {
+                Name = "Nora",
+                Surname = "Kalva",
+                BirthDate = "2001-12-12",
+                Email = "nora@de.lv",
+                Password = "",
+                FriendRequest = false,
+                Id = 12,
+                Post = null,
+                Image = null,
+                Interests = "",
+                Online = false
+            };
+
+            Assert.ThrowsExceptionAsync<EmptyPasswordException>(() =>
+                _userService.AddNewUser(user));
+
+        }
+
+        [TestMethod]
+        public void LoginWithoutEmail()
+        {
+            var user = new User
+            {
+                Email = "",
+                Password = "123"
+            };
+
+            Assert.ThrowsExceptionAsync<EmptyEmailException>(() =>
+                _userService.GetUser(user.Email, user.Password));
+
+        }
+
+        [TestMethod]
+        public void LoginWithoutPassword()
+        {
+            var user = new User
+            {
+                Email = "nora@de.lv",
+                Password = ""
+            };
+
+            Assert.ThrowsExceptionAsync<EmptyPasswordException>(() =>
+                _userService.GetUser(user.Email, user.Password));
 
         }
 

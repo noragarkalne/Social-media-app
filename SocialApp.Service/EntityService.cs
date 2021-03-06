@@ -39,6 +39,10 @@ namespace SocialApp.Service
         {
             return await GetById<T>(id);
         }
+        public IEnumerable<T> GetAllById(int id)
+        {
+            return GetAllById<T>(id);
+        }
 
         public ServiceResult Create(T entity)
         {

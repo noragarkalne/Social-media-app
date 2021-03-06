@@ -44,6 +44,10 @@ namespace SocialApp.Service
         {
             return await _ctx.Set<T>().SingleOrDefaultAsync(e => e.Id == id); //ASYNC and AWAIT always with SingleOrDefault
         }
+        public IEnumerable<T> GetAllById<T>(int id) where T : Entity
+        {
+            return QueryById<T>(id).ToList();
+        }
 
         public ServiceResult Create<T>(T entity) where T : Entity
         {

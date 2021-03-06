@@ -12,6 +12,7 @@ namespace SocialApp.Core.Services
     {
         IQueryable<T> Query();
         IQueryable<T> QueryById(int id);
+        IEnumerable<T> GetAllById(int id);
         IEnumerable<T> Get();
         Task<T> GetById(int id);
         ServiceResult Create(T entity);
