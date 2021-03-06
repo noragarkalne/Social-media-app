@@ -21,7 +21,8 @@ namespace Social_app.Controllers
 
     public class LoginController : BasicApiController
     {
-        public LoginController(IUserService userService, IMapper mapper) : base(userService, mapper)
+        public LoginController(IUserService userService, IPostsService postsService, IMapper mapper)
+            : base(userService, postsService, mapper)
         {
         }
 

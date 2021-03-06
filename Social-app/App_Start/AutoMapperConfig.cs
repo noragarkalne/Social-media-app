@@ -25,7 +25,9 @@ namespace Social_app
                     .ForMember(c => c.Interests, o => o.Ignore())
                     .ForMember(c => c.Post, o => o.Ignore());
 
-
+                cfg.CreateMap<Post, PostResponse>();
+                
+                cfg.CreateMap<PostResponse, Post>().ForMember(h => h.Id, o => o.Ignore());
 
             });
             config.AssertConfigurationIsValid();

@@ -14,8 +14,8 @@ namespace Social_app.Controllers
     [Route("api/post/register")]
     public class RegisterController : BasicApiController
     {
-        public RegisterController(IUserService userService, IMapper mapper)
-            : base(userService, mapper)
+        public RegisterController(IUserService userService, IPostsService postsService, IMapper mapper)
+            : base(userService, postsService,  mapper)
         {
         }
 

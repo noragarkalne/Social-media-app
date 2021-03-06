@@ -37,6 +37,7 @@ namespace Social_app.DependencyResolution {
             For<IDbService>().Use<DbService>();
             For(typeof(IEntityService<>)).Use(typeof(EntityService<>));
             For<IUserService>().Use<UserService>();
+            For<IPostsService>().Use<PostsService>();
             var mapper = AutoMapperConfig.GetMapper();
             For<IMapper>().Use(mapper).Singleton();
         }
