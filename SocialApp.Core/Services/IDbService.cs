@@ -16,7 +16,7 @@ namespace SocialApp.Core.Services
         IEnumerable<T> GetAllById<T>(int id) where T : Entity;
         IEnumerable<T> GetAllByUserId<T>(int userId) where T : Post;
         Task<T> GetUserByEmail<T>(string email) where T : User;
-        ServiceResult Create<T>(T entity) where T : Entity;
+        Task<ServiceResult> Create<T>(T entity) where T : Entity;
         ServiceResult Delete<T>(T entity) where T : Entity;
         ServiceResult Update<T>(T entity) where T : Entity;
         bool Exists<T>(int id) where T : Entity;

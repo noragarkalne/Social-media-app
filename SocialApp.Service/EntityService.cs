@@ -55,9 +55,9 @@ namespace SocialApp.Service
             return await GetUserByEmail<User>(email);
         }
 
-        public ServiceResult Create(T entity)
+        public async Task<ServiceResult> Create(T entity)
         {
-            return Create<T>(entity);
+            return await Create<T>(entity);
         }
 
         public ServiceResult Delete(T entity)

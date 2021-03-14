@@ -79,7 +79,7 @@ namespace SocialApp.Service
             }
 
             var hashPassword = EasyEncryption.MD5.ComputeMD5Hash(user.Password);
-            return Create(new User
+            return await Create(new User
             {
                 Name = user.Name,
                 Surname = user.Surname,

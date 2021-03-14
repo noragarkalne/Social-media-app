@@ -10,6 +10,6 @@ namespace SocialApp.Core.Services
     public interface IPostsService
     {
         IEnumerable<Post> GetPosts(int userId);
-        ServiceResult AddPost(Post post);
+        Task<ServiceResult> CreatePost(Post post);
     }
 }

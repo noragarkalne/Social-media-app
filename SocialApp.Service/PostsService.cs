@@ -26,9 +26,9 @@ namespace SocialApp.Service
             return GetAllByUserId(userId);
         }
 
-        public ServiceResult AddPost(Post post)
+        public async Task<ServiceResult> CreatePost(Post post)
         {
-            return Create(post);
+            return await Create(post);
         }
 
 

@@ -8,7 +8,7 @@ namespace SocialApp.Core.Models
         public string DateCreated { get; set; }
         public string Picture { get; set; }
         public string Text { get; set; }
-        public bool Like { get; set; } = false;
-        public bool Dislike { get; set; } = false;
+        public int Like { get; set; } = 0;
+        public int Dislike { get; set; } = 0;
     }
 }

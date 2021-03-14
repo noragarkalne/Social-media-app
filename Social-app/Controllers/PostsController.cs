@@ -21,7 +21,7 @@ namespace Social_app.Controllers
         {
         }
 
-        [HttpGet, Route("api/get/posts/")]
+        [HttpGet, Route("api/posts/")]
         public IHttpActionResult Get(int userId)
         {
             try
@@ -35,7 +35,26 @@ namespace Social_app.Controllers
             }
         }
 
-        // GET: api/Posts/5
+        [HttpPost, Route("api/posts/post")]
+        public async Task<IHttpActionResult> CreatePost(Post post)
+        {
+            try
+            {
+                var task = await _postsService.CreatePost(post);
+                if (task.Succeeded == false)
+                {
+                    return BadRequest(task.Error);
+                }
+
+                post.Id = task.Entity.Id;
+                return Created("", _mapper.Map<PostResponse>(post));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
 
 
         // POST: api/Posts

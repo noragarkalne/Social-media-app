@@ -63,15 +63,15 @@ namespace SocialApp.Service
             return QueryByUserId<T>(userId).ToList();
         }
 
-        public ServiceResult Create<T>(T entity) where T : Entity
+        public async Task<ServiceResult> Create<T>(T entity) where T : Entity
         {
             if (entity == null)
             {
                 throw new ArgumentException(nameof(entity));
             }
 
-            _ctx.Set<T>().Add(entity);
-            _ctx.SaveChanges();
+             _ctx.Set<T>().Add(entity);
+            await _ctx.SaveChangesAsync();
 
             return new ServiceResult(true).Set(entity);
         }
