@@ -29,6 +29,7 @@ namespace Social_app.Controllers
         [HttpPost, Route("api/post/login")]
         public async Task<IHttpActionResult> Login(User user)
         {
+
             var task = await _userService.GetUser(user.Email, user.Password);
             if (task.Succeeded)
             {

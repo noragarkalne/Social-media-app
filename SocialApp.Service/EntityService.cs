@@ -39,9 +39,20 @@ namespace SocialApp.Service
         {
             return await GetById<T>(id);
         }
+
         public IEnumerable<T> GetAllById(int id)
         {
             return GetAllById<T>(id);
+        }
+
+        public IEnumerable<Post> GetAllByUserId(int userId)
+        {
+            return GetAllByUserId<Post>(userId);
+        }
+
+        public async Task<User> GetUserByEmail(string email)
+        {
+            return await GetUserByEmail<User>(email);
         }
 
         public ServiceResult Create(T entity)

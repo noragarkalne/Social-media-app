@@ -77,7 +77,21 @@ namespace SocialApp.Service
                 throw new FutureDateBirthdayException();
                 //return new ServiceResult(false).Set($"To register on this site, you should be at least 13 years old, so go to your parents and ask for permision!!!");
             }
-            return Create(user);
+
+            var hashPassword = EasyEncryption.MD5.ComputeMD5Hash(user.Password);
+            return Create(new User
+            {
+                Name = user.Name,
+                Surname = user.Surname,
+                BirthDate = user.BirthDate,
+                Email = user.Email,
+                Password = hashPassword,
+                Interests = user.Interests,
+                Image = user.Image,
+                FriendRequest = user.FriendRequest,
+                Online = user.Online,
+                Post = user.Post
+            });
         }
 
         public int GetAge(DateTime date)
@@ -88,18 +102,17 @@ namespace SocialApp.Service
             {
                 age--;
             }
-            if (date < today.AddYears(-age))
+
+            if(date > today)
             {
-                age = -1; 
+                return -1;
             }
+            
             return age;
         }
 
         public async Task<ServiceResult> GetUser(string email, string password)
         {
-            var users = await _ctx.Users.ToListAsync();
-            var user = users.SingleOrDefault(u => u.Email == email && u.Password == password);
-
             if (!email.Contains("@"))
             {
                 return new ServiceResult(false).Set($"E-mail address should include '@'!");
@@ -115,11 +128,14 @@ namespace SocialApp.Service
                 throw new EmptyPasswordException();
             }
 
-            if (user == null)
+            var user = await GetUserByEmail<User>(email);
+            var hashedPassword = EasyEncryption.MD5.ComputeMD5Hash(password);
+            
+          
+            if (user == null || user.Password != hashedPassword)
             {
                 return new ServiceResult(false).Set($"Invalid username or password!");
             }
-
             var task = new ServiceResult(true).Set(user);
             return task;
         }

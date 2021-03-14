@@ -23,7 +23,7 @@ namespace SocialApp.Service
 
         public IEnumerable<Post> GetPosts(int userId)
         {
-            return GetAllById(userId);
+            return GetAllByUserId(userId);
         }
 
         public ServiceResult AddPost(Post post)

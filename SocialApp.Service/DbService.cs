@@ -34,6 +34,15 @@ namespace SocialApp.Service
             return _ctx.Set<T>().Where(e => e.Id == id);
         }
 
+        public IQueryable<T> QueryByUserId<T>(int userId) where T : Post
+        {
+            return _ctx.Set<T>().Where(e => e.UserId == userId);
+        }
+
+        public async Task<T> GetUserByEmail<T>(string email) where T : User
+        {
+            return await _ctx.Set<T>().SingleOrDefaultAsync(e => e.Email == email); 
+        }
 
         public IEnumerable<T> Get<T>() where T : Entity
         {
@@ -47,6 +56,11 @@ namespace SocialApp.Service
         public IEnumerable<T> GetAllById<T>(int id) where T : Entity
         {
             return QueryById<T>(id).ToList();
+        }
+
+        public IEnumerable<T> GetAllByUserId<T>(int userId) where T : Post
+        {
+            return QueryByUserId<T>(userId).ToList();
         }
 
         public ServiceResult Create<T>(T entity) where T : Entity

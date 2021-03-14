@@ -27,7 +27,7 @@ namespace Social_app.Controllers
             try
             {
                 var task = _postsService.GetPosts(userId);
-                return Ok(_mapper.Map<PostResponse>(task));
+                return Ok(_mapper.Map<List<PostResponse>>(task));
             }
             catch (Exception e)
             {
