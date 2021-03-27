@@ -31,6 +31,9 @@ namespace SocialApp.Service
             return await Create(post);
         }
 
-
+        public ServiceResult UpdatePost(Post post)
+        {
+            return Update(post);
+        }
     }
 }

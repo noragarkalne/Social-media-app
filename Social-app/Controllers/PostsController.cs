@@ -55,6 +55,29 @@ namespace Social_app.Controllers
             }
         }
 
+        [HttpPut, Route("api/posts/put")]
+        public IHttpActionResult UpdatePost(Post post)
+        {
+            if (!string.IsNullOrEmpty(post.Text) || !string.IsNullOrEmpty(post.Picture))
+            {
+                try
+                {
+                    var task = _postsService.UpdatePost(post);
+                    if (task.Succeeded == false)
+                    {
+                        return BadRequest(task.Error);
+                    }
+
+                    return Created("", _mapper.Map<PostResponse>(post));
+                }
+                catch (Exception e)
+                {
+                    return BadRequest(e.Message);
+                }
+            }
+            return BadRequest("Update failed! Post should contain text or picture.");
+        }
+
 
 
         // POST: api/Posts

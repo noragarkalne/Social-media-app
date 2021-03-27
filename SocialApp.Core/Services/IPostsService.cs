@@ -11,5 +11,6 @@ namespace SocialApp.Core.Services
     {
         IEnumerable<Post> GetPosts(int userId);
         Task<ServiceResult> CreatePost(Post post);
+        ServiceResult UpdatePost(Post post);
     }
 }
