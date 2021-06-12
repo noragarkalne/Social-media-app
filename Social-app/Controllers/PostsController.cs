@@ -78,21 +78,5 @@ namespace Social_app.Controllers
             return BadRequest("Update failed! Post should contain text or picture.");
         }
 
-
-
-        // POST: api/Posts
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT: api/Posts/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE: api/Posts/5
-        public void Delete(int id)
-        {
-        }
     }
 }
